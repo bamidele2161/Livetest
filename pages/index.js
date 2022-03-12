@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-import {useNavigate} from 'react-router-dom'
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,7 +35,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function Home() {
   let dispatch = useDispatch();
-  let navigate = useNavigate();
     const {tasks} = useSelector((state) => state.data)
 
   useEffect(() => {
@@ -56,7 +55,6 @@ export default function Home() {
         <div className="task-botton">
           <ButtonGroup variant="contained" aria-label="outlined primary button group">
             <Button color="primary" 
-              onClick={() => navigate('/addtask')}
             >Add New task</Button>
           </ButtonGroup>
         </div>
@@ -68,7 +66,6 @@ export default function Home() {
                 <StyledTableCell>ID</StyledTableCell>
                 <StyledTableCell align="center">Titlte</StyledTableCell>
                 <StyledTableCell align="center">Completed</StyledTableCell>
-                <StyledTableCell align="center">Add</StyledTableCell>
                 <StyledTableCell align="center">Delete</StyledTableCell>
               </TableRow>
             </TableHead>
@@ -82,18 +79,11 @@ export default function Home() {
                   <StyledTableCell align="center">{task.taskname}</StyledTableCell>
                   <StyledTableCell align="center">{task.completed}</StyledTableCell>
 
-                  <StyledTableCell align="center">
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                      <Button color="warning"
-                      onClick={() => navigate(`/addtask/${task.id}`)}>Add</Button>
-                    </ButtonGroup>
-                  </StyledTableCell>
                   
                   <StyledTableCell align="center">
                     <ButtonGroup variant="contained" aria-label="outlined primary button group">
                       <Button 
                       color="error"
-                      onClick={() => handleDelete(task.id)}
                       >Delete</Button>
                     </ButtonGroup>
                   </StyledTableCell>
