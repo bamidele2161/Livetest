@@ -21,17 +21,10 @@ const tasksReducers = (state = initialState, action) => {
                 tasks: state.tasks.filter((item) => item.id !== action.payload),
             }
         case types.ADD_TODO:
-            const tasks= state.tasks.concat(action.payload)
+            const tasks= state.tasks.concat(action.payload);
             return{
                 ...state,
                 tasks,
-                loading: false,
-            }
-
-        case types.EDIT_TODO:
-            return{
-                ...state,
-                task: action.payload,
                 loading: false,
             }
         default:

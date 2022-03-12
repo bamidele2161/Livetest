@@ -16,11 +16,6 @@ const taskAdded = (task) => ({
     payload: task,
 })
 
-const getTask = (task) => ({
-    type: types.EDIT_TODO,
-    payload: task,
-})
-
 
 export const loadTasks = () => {
     return function (dispatch) {
@@ -59,18 +54,3 @@ export const addTask = (task) => {
         })
     }
 }
-
-export const editTask = (id) => {
-    return function (dispatch) {
-        axios.get(`https://jsonplaceholder.typicode.com/todos${id}`)
-        .then((response) => {
-            console.log("response", response);
-            dispatch(getTask(response.data));
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }
-}
-
-

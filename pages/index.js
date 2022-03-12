@@ -11,6 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Router from 'next/router'
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -48,13 +49,14 @@ export default function Home() {
   };
   return(
     <div className="dashboard-container">
-        <div className="navbar-container">
-            <h1 className="navbar-brand" style={{fontSize: "40px"}}>task List</h1>
+        <div className="navbar-container" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100vw", marginLeft: "-95px"}}>
+            <h1 className="navbar-brand">Task List</h1>
         </div>
 
-        <div className="task-botton">
+        <div className="task-botton" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100vw", marginLeft: "-95px"}}>
           <ButtonGroup variant="contained" aria-label="outlined primary button group">
             <Button color="primary" 
+            onClick={() => Router.push("/addtask")}
             >Add New task</Button>
           </ButtonGroup>
         </div>
@@ -76,14 +78,14 @@ export default function Home() {
                     {task.id}
                   </StyledTableCell>
                   <StyledTableCell align="center">{task.title}</StyledTableCell>
-                  <StyledTableCell align="center">{task.taskname}</StyledTableCell>
-                  <StyledTableCell align="center">{task.completed}</StyledTableCell>
+                  <StyledTableCell align="center">{task.completed? "true": "false"}</StyledTableCell>
 
                   
                   <StyledTableCell align="center">
                     <ButtonGroup variant="contained" aria-label="outlined primary button group">
                       <Button 
                       color="error"
+                      onClick={() => {handleDelete(task.id)}}
                       >Delete</Button>
                     </ButtonGroup>
                   </StyledTableCell>
